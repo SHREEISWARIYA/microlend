@@ -1,0 +1,52 @@
+/* LoginForm.css */
+.loginform {
+    max-width: 550px; /* Center the form and provide a maximum width */
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #0a0a0a; /* Optional: Adds a border to the form */
+    border-radius: 15px; /* Optional: Rounds the corners */
+    background-color: rgb(206, 207, 207); /* Optional: Light grey background */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Adds shadow */
+    position: absolute;
+    margin-top: 100px;
+    margin-left: 35%;
+}
+  
+.form-control.half-width {
+    width: 100%; /* Set input fields to 50% width */
+}
+  
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+  
+.btn-primary:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+.alert-text {
+    color: rgb(243, 48, 14);
+  }
+
+.newuser{
+    padding-right: 40px;
+    
+}
+  
+@media (max-width: 576px) {
+    .form-control.half-width {
+      width: 100%; /* Full width on smaller screens */
+}
+  
+    .loginform {
+      padding: 15px; /* Reduce padding on smaller screens */
+    }
+}
+  

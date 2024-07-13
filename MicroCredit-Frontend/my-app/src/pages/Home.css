@@ -1,0 +1,48 @@
+.carousel{
+    font-size: larger ;
+    
+}
+
+/* .carousel-caption {
+    color: black;
+    margin-bottom: 200px;
+    text-shadow: none;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+  } */
+  
+  .service-list,
+  .feature-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  .service-item,
+  .feature-item {
+    background-color: #e7e7e7;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 8px rgba(48, 48, 48, 0.7);
+    max-width: 400px;
+    text-align: left;
+  }
+  
+  .service-item h3,
+  .feature-item h3 {
+    margin-top: 0;
+  }
+  
+  .service-item p,
+  .feature-item p {
+    margin: 0;
+  }
+
+  #features h5,
+  #services h5{
+    color:#0377d6;
+  }
+  

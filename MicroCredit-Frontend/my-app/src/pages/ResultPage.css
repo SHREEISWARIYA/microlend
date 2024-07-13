@@ -1,0 +1,63 @@
+/* ResultPage.css */
+.result-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 600px;
+    background-color: rgb(206, 207, 207);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 10%;
+  }
+  
+  h3 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .result-message {
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+  
+  .eligible-message {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .not-eligible-message {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .result-content {
+    width: 100%;
+  }
+  
+  .result-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #706d6d;
+  }
+  
+  .result-label {
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .result-value {
+    color: #333;
+  }
+  
+  .result-value.eligible {
+    color: green;
+  }
+  
+  .result-value.not-eligible {
+    color: red;
+  }
+  
