@@ -1,0 +1,53 @@
+Sample data to Register for a Loan
+
+API ENDPOINT: http://localhost:8000/api/insert_signup/
+
+{
+  "full_name": "sindhu",
+  "email": "jannu@example.com",
+  "mobile_number": "1234567890",
+  "password": "securepassword",
+  "dob": "1980-01-01",
+  "address": "123 Main St, Anytown, USA",
+  "city": "Erode",
+  "state_province":"Tamil Nadu",
+  "postal_code":"621216",
+  "pan_number": "NITHE4444H"
+}
+
+Sample data for Login
+
+API ENDPOINT: http://localhost:8000/api/login/
+
+{
+    "pan_number": "NITHE4444H",
+    "password": "Shree@214"
+}
+
+
+Sample data for apply loan
+
+API ENDPOINT: http://localhost:8000/api/insert_loan_details/
+
+{
+    "gender": "Male",
+    "marital_status": "Married",
+    "number_of_dependents": 4,
+    "employer_name": "Infosys",
+    "occupation": "Engineer",
+    "current_salary": 50000,
+    "previous_salary": 20000,
+    "previous_hike": "2023-08-01",
+    "estimated_hike": "2024-08-01",
+    "own_house": true,
+    "monthly_expenses": 4000,
+    "existing_loans": false,
+    "existing_loan_amount": 0,
+    "existing_emi_for_loan": 0,
+    "loan_from": "-",
+    "credit_score": 750,
+    "loan_amount_requested": 50000,
+    "loan_tenure_requested": 24,
+    "pan": "NITHE4444H"
+}
+

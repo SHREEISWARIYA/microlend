@@ -1,0 +1,208 @@
+--FULL DDL
+-- DROP SCHEMA ml_eligible;
+
+CREATE SCHEMA ml_eligible AUTHORIZATION loan_user;
+
+-- DROP SEQUENCE seq_micro_loan_new;
+
+CREATE SEQUENCE seq_micro_loan_new
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 9223372036854775807
+	START 1
+	CACHE 1
+	NO CYCLE;-- ml_eligible.tbl_loan_signup_new definition
+
+-- Drop table
+
+-- DROP TABLE tbl_loan_signup_new;
+
+CREATE TABLE tbl_loan_signup_new (
+	customer_id int4 DEFAULT nextval('ml_eligible.seq_micro_loan_new'::regclass) NOT NULL,
+	"name" varchar(100) NOT NULL,
+	email_address varchar(100) NOT NULL,
+	phone_number varchar(15) NOT NULL,
+	"password" varchar(100) NOT NULL,
+	date_of_birth date NOT NULL,
+	address text NOT NULL,
+	city varchar(50) NULL,
+	state_province varchar(50) NULL,
+	postal_code int4 NULL,
+	pan varchar(10) NOT NULL,
+	CONSTRAINT pk_tlsn_ci PRIMARY KEY (customer_id),
+	CONSTRAINT pk_tlsn_pan UNIQUE (pan)
+);
+
+
+-- ml_eligible.tbl_loan_details_new definition
+
+-- Drop table
+
+-- DROP TABLE tbl_loan_details_new;
+
+CREATE TABLE tbl_loan_details_new (
+	customer_id int4 NOT NULL,
+	pan bpchar(10) NULL,
+	gender varchar(10) NULL,
+	marital_status varchar(20) NULL,
+	number_of_dependents int4 NULL,
+	employer_name varchar(100) NULL,
+	occupation varchar(150) NULL,
+	current_salary numeric(10, 2) NULL,
+	previous_salary numeric(10, 2) NULL,
+	previous_hike date NULL,
+	estimated_hike date NULL,
+	own_house bool NULL,
+	monthly_expenses numeric(10, 2) NULL,
+	existing_loans bool NULL,
+	existing_loan_amount numeric(15, 2) NULL,
+	existing_emi_for_loan numeric(10, 2) NULL,
+	loan_from varchar(50) NULL,
+	credit_score int4 NULL,
+	loan_amount_requested numeric(15, 2) NULL,
+	loan_tenure_requested int4 NULL,
+	CONSTRAINT pk_tldn_ci PRIMARY KEY (customer_id),
+	CONSTRAINT fk_tldn_ci FOREIGN KEY (customer_id) REFERENCES tbl_loan_signup_new(customer_id)
+);
+
+
+
+-- DROP FUNCTION ml_eligible.proc_micro_loan_apply_new(varchar, varchar, int4, varchar, varchar, numeric, numeric, date, date, bool, numeric, bool, numeric, numeric, varchar, int4, numeric, int4);
+
+CREATE OR REPLACE FUNCTION ml_eligible.proc_micro_loan_apply_new(p_gender character varying, p_marital_status character varying, p_number_of_dependents integer, p_employer_name character varying, p_occupation character varying, p_current_salary numeric, p_previous_salary numeric, p_previous_hike date, p_estimated_hike date, p_own_house boolean, p_monthly_expenses numeric, p_existing_loans boolean, p_existing_loan_amount numeric, p_existing_emi_for_loan numeric, p_loan_from character varying, p_credit_score integer, p_loan_amount_requested numeric, p_loan_tenure_requested integer)
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
+DECLARE
+    v_customer_id INT;
+   -- v_date_of_birth DATE;
+   -- v_age INT;
+BEGIN
+    -- Retrieve customer_id and date_of_birth based on PAN
+    SELECT customer_id INTO v_customer_id
+    FROM ml_eligible.tbl_loan_signup_new;
+   -- WHERE pan = p_pan;
+
+    -- Calculate age based on date_of_birth
+    --v_age := DATE_PART('year', AGE(v_date_of_birth));
+
+    -- Update existing loan details for the customer
+    UPDATE ml_eligible.tbl_loan_details_new
+    SET
+        gender = p_gender,
+        marital_status = p_marital_status,
+        number_of_dependents = p_number_of_dependents,
+        employer_name = p_employer_name,
+        occupation = p_occupation,
+        current_salary=p_current_salary,
+        previous_salary=p_previous_salary,
+        previous_hike=p_previous_hike,
+        estimated_hike=p_estimated_hike,
+        own_house = p_own_house,
+        monthly_expenses = p_monthly_expenses,
+        existing_loans = p_existing_loans,
+        existing_loan_amount = p_existing_loan_amount,
+        existing_emi_for_loan = p_existing_emi_for_loan,
+        loan_from = p_loan_from,
+        credit_score = p_credit_score,
+        loan_amount_requested = p_loan_amount_requested,
+        loan_tenure_requested = p_loan_tenure_requested
+    WHERE customer_id = v_customer_id;
+   
+   --update ml_eligible.tbl_loan_details_new set age=(current_date-date_of_birth)/365 where age is null;
+  
+  	--UPDATE ml_eligible.tbl_loan_details_new set total_monthly_income=monthly_income+other_income where total_monthly_income=0;
+
+END;
+$function$
+;
+
+-- DROP FUNCTION ml_eligible.proc_micro_loan_apply_new(varchar, varchar, int4, varchar, varchar, numeric, numeric, date, date, bool, numeric, bool, numeric, numeric, varchar, int4, numeric, int4, varchar);
+
+CREATE OR REPLACE FUNCTION ml_eligible.proc_micro_loan_apply_new(p_gender character varying, p_marital_status character varying, p_number_of_dependents integer, p_employer_name character varying, p_occupation character varying, p_current_salary numeric, p_previous_salary numeric, p_previous_hike date, p_estimated_hike date, p_own_house boolean, p_monthly_expenses numeric, p_existing_loans boolean, p_existing_loan_amount numeric, p_existing_emi_for_loan numeric, p_loan_from character varying, p_credit_score integer, p_loan_amount_requested numeric, p_loan_tenure_requested integer, p_pan character varying)
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
+DECLARE
+    v_customer_id INT;
+BEGIN
+    -- Retrieve customer_id based on PAN
+    SELECT customer_id INTO v_customer_id
+    FROM ml_eligible.tbl_loan_signup_new
+    WHERE pan = p_pan;
+
+    -- Update existing loan details for the customer
+    UPDATE ml_eligible.tbl_loan_details_new
+    SET
+        gender = p_gender,
+        marital_status = p_marital_status,
+        number_of_dependents = p_number_of_dependents,
+        employer_name = p_employer_name,
+        occupation = p_occupation,
+        current_salary = p_current_salary,
+        previous_salary = p_previous_salary,
+        previous_hike = p_previous_hike,
+        estimated_hike = p_estimated_hike,
+        own_house = p_own_house,
+        monthly_expenses = p_monthly_expenses,
+        existing_loans = p_existing_loans,
+        existing_loan_amount = p_existing_loan_amount,
+        existing_emi_for_loan = p_existing_emi_for_loan,
+        loan_from = p_loan_from,
+        credit_score = p_credit_score,
+        loan_amount_requested = p_loan_amount_requested,
+        loan_tenure_requested = p_loan_tenure_requested
+    WHERE customer_id = v_customer_id
+    AND pan = p_pan;
+   
+END;
+$function$
+;
+
+-- DROP FUNCTION ml_eligible.proc_micro_loan_signup_new(varchar, varchar, varchar, varchar, date, text, varchar, varchar, int4, bpchar);
+
+CREATE OR REPLACE FUNCTION ml_eligible.proc_micro_loan_signup_new(p_name character varying, p_email_address character varying, p_phone_number character varying, p_password character varying, p_date_of_birth date, p_address text, p_city character varying, p_state_province character varying, p_postal_code integer, p_pan character)
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
+DECLARE
+    v_customer_id INT;
+BEGIN
+    -- Insert into loans_signup_data
+    INSERT INTO ml_eligible.tbl_loan_signup_new (
+        name,
+        email_address,
+        phone_number,
+        password,
+        date_of_birth,
+        address,
+        city,
+        state_province,
+        postal_code,
+        pan
+    ) VALUES (
+        p_name,
+        p_email_address,
+        p_phone_number,
+        p_password,
+        p_date_of_birth,
+        p_address,
+        p_city,
+        p_state_province,
+        p_postal_code,
+        p_pan
+    )
+    RETURNING customer_id INTO v_customer_id;
+
+    -- Insert into loan_details_data with the same customer_id
+    INSERT INTO ml_eligible.tbl_loan_details_new (
+        customer_id,
+        pan
+        ) VALUES (
+        v_customer_id,
+        p_pan
+        );
+
+END;
+$function$
+;
