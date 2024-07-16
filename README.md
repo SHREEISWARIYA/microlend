@@ -17,12 +17,12 @@ This microcredit application is designed to help salaried individuals apply for 
 
 A quick introduction of the minimal setup.This project uses Python, Django, PostgreSQL, DBeaver, React, and Postman for API testing.
 
-# Frontend
+# How to run Frontend
 cd MicroCredit-Frontend/my-app \
 npm install \
 npm start
 
-# Backend 
+# How to run Backend 
 Navigate to your project directory and install necessary dependencies, apply migrations, and run the server.
 
 cd MicroCreditML/myapp/myapp/  \
