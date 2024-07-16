@@ -15,23 +15,23 @@ npm start
 # Backend 
 Navigate to your project directory and install necessary dependencies, apply migrations, and run the server.
 
-cd MicroCreditML/myapp/myapp/
-pip install -r requirements.txt
+cd MicroCreditML/myapp/myapp/  \
+pip install -r requirements.txt \
 
-cd MicroCreditML/myapp
-python manage.py makemigrations
-python manage.py migrate
-python manage.py runserver
+cd MicroCreditML/myapp \
+python manage.py makemigrations \
+python manage.py migrate \
+python manage.py runserver \
 
 ## Model
-Step1: Run the file 01_ml_synthetic_dataset.py file to generate the dataset
+Step1: Run the file 01_ml_synthetic_dataset.py file to generate the dataset. \
 python 01_ml_synthetic_dataset.py
 
 Step2: Run the file 02_ml_train_model.py file to train the model.It is used to trains a 
-RandomForestClassifier on the training data.Makes predictions on the test set and calculates the accuracy of the model.Saves the trained model, scaler, and label encoders as .pkl files using joblib, so they can be reused later for predictions without retraining.
+RandomForestClassifier on the training data.Makes predictions on the test set and calculates the accuracy of the model.Saves the trained model, scaler, and label encoders as .pkl files using joblib, so they can be reused later for predictions without retraining. \
 python 02_ml_train_model.py
 
-Step3: Make predictions for the loan applied user
+Step3: Make predictions for the loan applied user. \
 python manage.py runserver 
 
 ## Developing
