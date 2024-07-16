@@ -23,7 +23,7 @@ python manage.py makemigrations \
 python manage.py migrate \
 python manage.py runserver 
 
-## Model
+## Model Creation
 Step1: Run the file 01_ml_synthetic_dataset.py file to generate the dataset. \
 python 01_ml_synthetic_dataset.py
 
@@ -34,33 +34,33 @@ python 02_ml_train_model.py
 Step3: Make predictions for the loan applied user. \
 python manage.py runserver 
 
-## Developing
-Setting Up the Development Environment
-git clone https://github.com/SHREEISWARIYA/microlend.git
+## Developing (Steps)
+Setting Up the Development Environment \
+git clone https://github.com/SHREEISWARIYA/microlend.git 
 
-Create and Activate a Virtual Environment(Backend)
-python -m venv venv
-venv\Scripts\activate
+Create and Activate a Virtual Environment(Backend) \
+python -m venv venv \
+venv\Scripts\activate 
 
-Install Backend Dependencies
-cd MicroCreditML/myapp/myapp/
+Install Backend Dependencies \
+cd MicroCreditML/myapp/myapp/ \
 pip install -r requirements.txt
 
-Install Frontend Dependencies
-cd MicroCredit-Frontend/my-app
-npm install
-npm start
+Install Frontend Dependencies \
+cd MicroCredit-Frontend/my-app \
+npm install \
+npm start \
 
-Configure PostgreSQL
-Create a PostgreSQL database and user.
-Update DATABASES settings in settings.py with your database credentials.
+Configure PostgreSQL \
+Create a PostgreSQL database and user. \
+Update DATABASES settings in settings.py with your database credentials. \
 
-Apply Migrations
-python manage.py makemigrations
-python manage.py migrate
+Apply Migrations \
+python manage.py makemigrations \
+python manage.py migrate 
 
-Run the Development Servers
-python manage.py runserver
+Run the Development Servers \
+python manage.py runserver \
 
 ### Built With
 Python - Version 3.6 or higher \
