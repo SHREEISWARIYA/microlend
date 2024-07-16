@@ -63,22 +63,24 @@ Run the Development Servers
 python manage.py runserver
 
 ### Built With
-Python - Version 3.6 or higher
-Django - Version 4.1
-Django REST Framework - Version 3.13.1
-PostgreSQL - Version 12 or higher
-React - Version 17.0.2
-Node.js - Version 14 or higher
-npm - Version 6 or higher
-Axios - Version 0.21.1 (for making HTTP requests in React)
-Bootstrap - Version 5.1 (for styling React components)
+Python - Version 3.6 or higher \
+Django - Version 4.1 \
+Django REST Framework - Version 3.13.1 \
+PostgreSQL - Version 12 or higher \
+React - Version 17.0.2 \
+Node.js - Version 14 or higher \
+npm - Version 6 or higher \
+Axios - Version 0.21.1 (for making HTTP requests in React) \
+Bootstrap - Version 5.1 (for styling React components) \
+DBeaver
 
 ### Prerequisites
-Ensure you have the following installed on your machine:
+Ensure you have the following installed on your machine: 
 
-Python (version 3.6 or higher)
-PostgreSQL
-Node.js and npm
-Django
-Create React App
-Postman
+Python (version 3.6 or higher) \
+PostgreSQL \
+Node.js and npm \
+Django \
+Create React App \
+Postman \
+DBeaver
