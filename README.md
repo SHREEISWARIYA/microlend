@@ -16,12 +16,12 @@ npm start
 Navigate to your project directory and install necessary dependencies, apply migrations, and run the server.
 
 cd MicroCreditML/myapp/myapp/  \
-pip install -r requirements.txt \
+pip install -r requirements.txt 
 
 cd MicroCreditML/myapp \
 python manage.py makemigrations \
 python manage.py migrate \
-python manage.py runserver \
+python manage.py runserver 
 
 ## Model
 Step1: Run the file 01_ml_synthetic_dataset.py file to generate the dataset. \
